@@ -20,3 +20,21 @@ resource "aws_instance" "app-daas-numerx" {
     Name = "daas-numerx-app-${count.index}"
   }
 }
+
+resource "aws_ebs_volume" "app-numerx-volume" {
+    count = "${var.instances}"
+    /* availability_zone = "${var.region}" */
+    availability_zone = "${var.zone}"
+    size = 512
+    tags {
+        Name = "nx-hdd-${count.index}"
+    }
+}
+
+resource "aws_volume_attachment" "ebs_att" {
+  count = "${var.instances}"
+  device_name = "/dev/sdh"
+  volume_id = "${aws_ebs_volume.app-numerx-volume.id}"
+  instance_id = "${aws_instance.app-daas-numerx.id}"
+}
+
