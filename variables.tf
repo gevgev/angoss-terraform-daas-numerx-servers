@@ -12,11 +12,11 @@ variable "vpc_id"       			{ default = "vpc-e2f74186" }
 variable "subnet_id"    			{ default = "subnet-05f97861" }
 variable "vpc_security_group_id"    { default = "sg-69edf50e" }
 
-/* Ubuntu 14.04 amis by region */
+/* Amazon Linux AMI 2016.03.1 per Numerx: Jiang Wu <jiang.wu@numerxdata.com> */
 variable "amis" {
   description = "Base AMI to launch the instances with"
   default = {
-    us-west-2 = "ami-9abea4fb" 
+    us-west-2 = "ami-d0f506b0" 
   }
 }
 
